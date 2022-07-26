@@ -10,11 +10,11 @@ const commands = {
     date: (data, fun) => { fun(Date()) },
     pwd: (data, fun) => { fun(process.cwd()) },
     ls: (data, fun) => { fun(filesListe) },
-    cat: readFile,
-    head: readFile,
-    tail: readFile,
-    echo: parseEcho,
-    curl: getCurl,
+    cat: (data, fun) => readFile(data, fun),
+    head: (data, fun) => readFile(data, fun),
+    tail: (data, fun) => readFile(data, fun),
+    echo: (data, fun) => parseEcho(data, fun),
+    curl: (data, fun) => getCurl(data, fun),
 };
 
 function readFile(comand, fun) {
@@ -37,23 +37,23 @@ function readFile(comand, fun) {
     });
 }
 
-function parseEcho(input) {
+function parseEcho(input, fun) {
     var str = '';
     var inpSplit = input.split(' ');
     inpSplit.shift();
     if (commands[inpSplit[0]] !== undefined) {
-        process.stdout.write(commands[inpSplit[0]].toString());
+        fun(commands[inpSplit[0]].toString())
     } else {
         inpSplit.forEach(val => str = str + `${val} `);
-        process.stdout.write(str.trim());
+        fun(str.trim());
     }
 }
 
-function getCurl(url) {
+function getCurl(url, fun) {
     var urlSplit = url.split(' ');
     request(`https://${urlSplit[1]}/`, (err, res, body) => {
         if (err) throw err;
-        process.stdout.write(body);
+        fun(body);
     });
 }
 module.exports = commands;
