@@ -29,6 +29,14 @@ utils.blue = function (text) {
 	console.log(chalk.blue(text));
 };
 
+utils.cyan = function (text) {
+	console.log(chalk.cyan(text));
+};
+
+utils.yellow = function (text) {
+	console.log(chalk.yellow(text));
+};
+
 utils.magenta = function (text) {
 	console.error(chalk.magenta(text));
 };

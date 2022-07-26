@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "test": "jest *.spec.js",
+    "exercise-one": "nodemon exercise-one.js",
     "grade": "jest --useStderr --json --outputFile=./result.json"
   },
   "author": "",
@@ -15,5 +16,8 @@
     "chai-spies": "^1.0.0",
     "chalk": "^4.1.0",
     "jest": "^27.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }
