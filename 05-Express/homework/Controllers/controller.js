@@ -1,33 +1,6 @@
-// const bodyParser = require("body-parser");
-'use strict'
-/**modulos para crear el servidor*/
-const express = require("express");
-
-const STATUS_USER_ERROR = 422;
-
-// This array of posts persists in memory across requests. Feel free
-// to change this to a let binding if you need to reassign it.
 var posts = [];
 var id = 0;
 
-const server = express();
-var Router = express.Router();
-// to enable parsing of json bodies for post requests
-// server.use(express.json());
-var posts_routes = require('../routes/serverRoutes');
-var authors_routes = require('../routes/authorRoutes');
-// TODO: your code to handle requests
-// server.use(bodyParser.urlencoded({ extended: false }));
-server.use(express.json());
-/**header para llamar desde el front-end*/
- server.use((req, res, next) => {
-     res.header('Access-Control-Allow-Origin', '*');
-     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-     next();
- });
-/**rutas */
 
 
 var PostController = {
@@ -142,7 +115,7 @@ var PostController = {
     }
 }
 
-var AutorController = {
+var AuthorController = {
     AutorDelete: (req, res) => {
         let { author } = req.body;
         let lastPost = posts.filter(post => post.author === author);
@@ -158,23 +131,4 @@ var AutorController = {
     }
 }
 
- server.use("/posts", [
-     Router.get("/", PostController.getAllPosts),
-     Router.get("/:author", PostController.getByAuthor),
-     Router.get("/:author/:title", PostController.getByAuthorTitle),
-     Router.post('/', PostController.newPost),
-     Router.post("/author/:author", PostController.postAuthor),
-     Router.put("/", PostController.updatePost),
-     Router.delete("/", PostController.deletePost),
- ]);
- server.delete("/author", AutorController.AutorDelete)
-// server.use("/posts", posts_routes);
-// server.use("/author", authors_routes);
-module.exports = { posts, server };
-
-/**
- * hace extamente lo mismo por modulos pero no pasa los teste
- * no se clase de brujeria es esta...
- * y solo se puede usar use una sola vez sino te lo manda a de nuevo a post 
- * en author 
- */
+module.exports = { PostController, AuthorController };

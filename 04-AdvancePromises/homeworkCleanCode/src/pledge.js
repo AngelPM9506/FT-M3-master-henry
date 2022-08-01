@@ -5,14 +5,10 @@ Promises Workshop: construye la libreria de ES6 promises, pledge.js
 // // TU CÓDIGO AQUÍ:
 class $Promise {
     constructor(executor) {
-        if (typeof (executor) !== 'function')
-            throw new TypeError('Executor is not a function');
+        if (typeof (executor) !== 'function') throw new TypeError('Executor is not a function');
         this._state = 'pending';
         this._handlerGroups = [];
-        executor(
-            data => this._internalResolve(data),
-            raseon => this._internalReject(raseon)
-        );
+        executor(data => this._internalResolve(data),raseon => this._internalReject(raseon));
     }
     _changeState(state, data) {
         if (this._state === 'pending') {
@@ -28,10 +24,8 @@ class $Promise {
         this._changeState('rejected', raseon);
     }
     then(successCb, errorCb) {
-        if (typeof (successCb) !== 'function')
-            successCb = false;
-        if (typeof (errorCb) !== 'function')
-            errorCb = false;
+        if (typeof (successCb) !== 'function') successCb = false;
+        if (typeof (errorCb) !== 'function') errorCb = false;
         var downstreamPromise = new $Promise(() => { });
         this._handlerGroups.push({
             successCb: successCb,
