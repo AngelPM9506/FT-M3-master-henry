@@ -11,11 +11,8 @@ var posts = [];
 var id = 0;
 
 const server = express();
-var Router = express.Router();
 // to enable parsing of json bodies for post requests
 // server.use(express.json());
-var posts_routes = require('../routes/serverRoutes');
-var authors_routes = require('../routes/authorRoutes');
 // TODO: your code to handle requests
 // server.use(bodyParser.urlencoded({ extended: false }));
 server.use(express.json());
@@ -27,8 +24,13 @@ server.use(express.json());
      res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
      next();
  });
-/**rutas */
 
+/**controlador */
+
+var posts_routes = require('../routes/serverRoutes');
+var authors_routes = require('../routes/authorRoutes');
+
+var Router = express.Router();
 
 var PostController = {
     newPost: (req, res) => {
