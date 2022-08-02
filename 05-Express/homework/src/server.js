@@ -168,8 +168,10 @@ var AutorController = {
      Router.delete("/", PostController.deletePost),
  ]);
  server.delete("/author", AutorController.AutorDelete)
+
 // server.use("/posts", posts_routes);
 // server.use("/author", authors_routes);
+
 module.exports = { posts, server };
 
 /**

@@ -1,8 +1,6 @@
 var posts = [];
 var id = 0;
 
-
-
 var PostController = {
     newPost: (req, res) => {
         let { author, title, contents } = req.body;
