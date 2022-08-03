@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "start": "nodemon start.js",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --detectOpenHandles",
+    "testWatch": "npm test -- --watch"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +15,8 @@
     "nodemon": "^2.0.15",
     "supertest": "^6.2.2",
     "supertest-session": "^4.1.0"
+  },
+  "devDependencies": {
+    "bluebird": "^3.7.2"
   }
 }
