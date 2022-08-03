@@ -26,11 +26,23 @@ utils.promisifiedReadFile = function (filename) {
 };
 
 utils.blue = function (text) {
-	console.log(chalk.blue(text));
+	console.log(chalk.blue.bold(text));
 };
 
+utils.cyanBright = text => {
+	console.log(chalk.cyanBright.bold(text));
+}
+
+utils.redBright = text => {
+	console.log(chalk.redBright.bold(text));
+}
+
+utils.yellowBright = text => {
+	console.log(chalk.yellowBright.bold(text));
+}
+
 utils.magenta = function (text) {
-	console.error(chalk.magenta(text));
+	console.error(chalk.magentaBright.bold(text));
 };
 
 module.exports = utils;
